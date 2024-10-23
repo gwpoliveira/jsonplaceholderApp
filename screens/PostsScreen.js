@@ -15,7 +15,8 @@ const PostsScreen = ({ navigation }) => {
     <TouchableOpacity onPress={() => navigation.navigate('PostDetail', { postId: item.id })}>
       <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
         <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-        <Text>{item.body.substring(0, 50)}...</Text>
+        {/*<Text>{item.body.substring(0, 50)}...</Text>*/}
+        <Text>{item.body}...</Text>
       </View>
     </TouchableOpacity>
   );
