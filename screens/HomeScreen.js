@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>JSONPlaceholder App</Text>
+      <Text style={styles.title}>Seja Bem Vindos</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Posts')}>
         <Text style={styles.buttonText}>Ver Posts</Text>
       </TouchableOpacity>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const PostsScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
@@ -15,12 +16,21 @@ const PostsScreen = ({ navigation }) => {
     <View style={styles.card}>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.body}>{item.body.substring(0, 100)}...</Text>
+
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PostDetail', { postId: item.id })}>
-          <Text style={styles.buttonText}>Mais Detalhes</Text>
+        {/* Ícone de Mais Detalhes */}
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('PostDetail', { postId: item.id })}>
+          <Icon name="description" size={24} color="#4CAF50" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.userButton} onPress={() => navigation.navigate('UserDetail', { userId: item.userId })}>
-          <Text style={styles.buttonText}>Ver Usuário</Text>
+
+        {/* Ícone de Ver Usuário */}
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('UserDetail', { userId: item.userId })}>
+          <Icon name="person" size={24} color="#2196F3" />
+        </TouchableOpacity>
+
+        {/* Ícone de Editar */}
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('EditPost', { postId: item.id })}>
+          <Icon name="edit" size={24} color="#FFA500" />
         </TouchableOpacity>
       </View>
     </View>
@@ -59,24 +69,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  button: {
-    backgroundColor: '#4CAF50',
+  iconButton: {
     padding: 10,
     borderRadius: 5,
-    flex: 1,
-    marginRight: 5,
     alignItems: 'center',
-  },
-  userButton: {
-    backgroundColor: '#2196F3',
-    padding: 10,
-    borderRadius: 5,
-    flex: 1,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
   },
 });
 
