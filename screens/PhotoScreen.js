@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 const PhotoScreen = ({ route }) => {
@@ -13,9 +13,9 @@ const PhotoScreen = ({ route }) => {
   }, [albumId]);
 
   const renderItem = ({ item }) => (
-    <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-      <Image source={{ uri: item.thumbnailUrl }} style={{ width: 100, height: 100 }} />
-      <Text>{item.title}</Text>
+    <View style={styles.card}>
+      <Image source={{ uri: item.thumbnailUrl }} style={styles.image} />
+      <Text style={styles.title}>{item.title}</Text>
     </View>
   );
 
@@ -24,8 +24,41 @@ const PhotoScreen = ({ route }) => {
       data={photos}
       keyExtractor={item => item.id.toString()}
       renderItem={renderItem}
+      contentContainerStyle={styles.container}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    alignItems: 'center',
+  },
+  image: {
+    width: 150,
+    height: 150,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+  },
+});
 
 export default PhotoScreen;

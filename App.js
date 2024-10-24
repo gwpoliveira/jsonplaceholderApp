@@ -7,6 +7,7 @@ import PostDetailScreen from './screens/PostDetailScreen';
 import AlbumScreen from './screens/AlbumScreen';
 import PhotoScreen from './screens/PhotoScreen';
 import UsersScreen from './screens/UsersScreen';
+import UserDetailScreen from './screens/UserDetailScreen'; // Certifique-se de importar a tela corretamente
 
 const Stack = createStackNavigator();
 
@@ -14,13 +15,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        {/* Assegure-se de que não há nenhum outro tipo de componente aqui, exceto Stack.Screen */}
+        {/* Certifique-se de que apenas Stack.Screen, Group ou React.Fragment estejam dentro do Stack.Navigator */}
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Posts" component={PostsScreen} />
         <Stack.Screen name="PostDetail" component={PostDetailScreen} />
         <Stack.Screen name="Albums" component={AlbumScreen} />
         <Stack.Screen name="Photos" component={PhotoScreen} />
         <Stack.Screen name="Users" component={UsersScreen} />
+        <Stack.Screen name="UserDetail" component={UserDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,31 +1,19 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>JSONPlaceholder App</Text>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Ver Posts"
-          onPress={() => navigation.navigate('Posts')}
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Ver Álbuns"
-          onPress={() => navigation.navigate('Albums')}
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Ver Usuários"
-          onPress={() => navigation.navigate('Users')}
-        />
-      </View>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Posts')}>
+        <Text style={styles.buttonText}>Ver Posts</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Albums')}>
+        <Text style={styles.buttonText}>Ver Álbuns</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Users')}>
+        <Text style={styles.buttonText}>Ver Usuários</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -35,16 +23,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  buttonContainer: {
-    marginVertical: 10,
+  button: {
+    backgroundColor: '#4CAF50',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 15,
     width: '80%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 
