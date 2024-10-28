@@ -3,12 +3,11 @@ import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 
 const EditPostScreen = ({ route, navigation }) => {
-  const { postId } = route.params;  // Recebendo o postId a partir da navegação
+  const { postId } = route.params;
   const [post, setPost] = useState({ title: '', body: '' });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Buscar o post atual
     axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(response => {
         setPost({ title: response.data.title, body: response.data.body });
@@ -20,16 +19,15 @@ const EditPostScreen = ({ route, navigation }) => {
       });
   }, [postId]);
 
-  const handleSave = () => {
-    // Simular envio das alterações para a API
-    axios.put(`https://jsonplaceholder.typicode.com/posts/${postId}`, post)
+  const handlePatch = () => {
+    axios.patch(`https://jsonplaceholder.typicode.com/posts/${postId}`, post)
       .then(response => {
         Alert.alert('Sucesso', 'Post atualizado com sucesso!');
-        navigation.goBack();  // Voltar para a tela anterior
+        navigation.goBack();
       })
       .catch(error => {
-        console.error('Erro ao salvar o post:', error);
-        Alert.alert('Erro', 'Não foi possível salvar as alterações.');
+        console.error('Erro ao atualizar o post:', error);
+        Alert.alert('Erro', 'Não foi possível atualizar o post.');
       });
   };
 
@@ -56,7 +54,7 @@ const EditPostScreen = ({ route, navigation }) => {
         onChangeText={(text) => setPost({ ...post, body: text })}
         multiline
       />
-      <Button title="Salvar Alterações" onPress={handleSave} />
+      <Button title="Salvar Alterações" onPress={handlePatch} />
     </View>
   );
 };
